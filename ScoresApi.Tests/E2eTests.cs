@@ -13,6 +13,16 @@ public class E2eTests
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
     
+    [Fact]
+    public async Task ScoresEndpointReturnsScore()
+    {
+        var client = new ScoresApiClient();
+        var response = client.Get("/scores");
+
+        var responseText = await response.Content.ReadAsStringAsync();
+        Assert.Contains("value", responseText);
+    }
+
     public class ScoresApiClient : HttpClient
     {
         private static readonly HttpClientHandler handler = new() {};
