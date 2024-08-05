@@ -10,7 +10,9 @@ public class ScoresRepository
                     DateTime.Now.AddDays(-2),
                     "ABC",
                     10
-                ));
+                ))
+            .OrderByDescending(score => score.Value)
+            .Take(10);
     }
 
     public void AddScore(Score score)

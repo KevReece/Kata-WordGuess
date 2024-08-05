@@ -1,6 +1,7 @@
 namespace WordGuess;
 
 using Autofac;
+using ScoresApi.Client;
 using WordGuess.Model;
 using WordGuess.Models;
 using WordGuess.States;
@@ -15,6 +16,7 @@ public class DependencyContainer
         containerBuilder.RegisterType<StateFactory>().As<IStateFactory>();
         containerBuilder.RegisterType<WordGenerator>().AsSelf();
         containerBuilder.RegisterType<Game>().AsSelf();
+        containerBuilder.RegisterType<ScoresApiClient>().As<IScoresApiClient>();
         return containerBuilder.Build();
     }
 }

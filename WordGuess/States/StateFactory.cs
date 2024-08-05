@@ -1,3 +1,4 @@
+using ScoresApi.Client;
 using WordGuess.Model;
 using WordGuess.Models;
 
@@ -7,11 +8,13 @@ public class StateFactory : IStateFactory
 {
     private readonly WordGenerator wordGenerator;
     private readonly Game game;
+    private readonly IScoresApiClient scoresApiClient;
 
-    public StateFactory(WordGenerator wordGenerator, Game game)
+    public StateFactory(WordGenerator wordGenerator, Game game, IScoresApiClient scoresApiClient)
     {
         this.wordGenerator = wordGenerator;
         this.game = game;
+        this.scoresApiClient = scoresApiClient;
     }
 
     public IState CreateNewGameState()
@@ -31,6 +34,6 @@ public class StateFactory : IStateFactory
 
     public IState CreateEnteringInitialsState()
     {
-        return new EnteringInitialsState(game);
+        return new EnteringInitialsState(game, scoresApiClient);
     }
 }

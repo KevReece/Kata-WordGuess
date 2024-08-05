@@ -11,4 +11,8 @@
     <PackageReference Include="autofac" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ScoresApi.Client\ScoresApi.Client.csproj" />
+  </ItemGroup>
+
 </Project>

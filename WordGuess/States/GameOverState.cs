@@ -13,6 +13,6 @@ public class GameOverState : IState
     }
 
     public IView View => new GameOverView(game);
-    public IState Act(char? pressedKey) => this;
+    public IState Act(char? pressedKey) => null!;
     public Interaction Interaction => Interaction.Exit;
 }

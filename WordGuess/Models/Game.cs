@@ -7,6 +7,7 @@ public class Game
     public int CurrentCharIndex { get; set; } = 1;
     public string PlayerInitials { get; set; } = string.Empty;
     public int WordsComplete { get; set; } = 0;
+    public IEnumerable<Tuple<string, int>>? TopScores { get; set; } = null;
     
     public string GetMaskedWord()
     {

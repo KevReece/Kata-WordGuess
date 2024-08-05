@@ -1,8 +1,7 @@
 using System.Text;
 using WordGuess.Models;
-using WordGuess.Views;
 
-namespace WordGuess;
+namespace WordGuess.Views;
 
 public class GameOverView : IView
 {
@@ -21,7 +20,13 @@ public class GameOverView : IView
         sb.AppendLine("GAME OVER");
         sb.AppendLine("=========\n");
         sb.AppendLine($"Words complete: {game.WordsComplete}");
-        sb.AppendLine($"Player: {game.PlayerInitials}");
+        sb.AppendLine($"Player: {game.PlayerInitials}\n");
+        sb.AppendLine("Top Scores:");
+        sb.AppendLine("-----------\n");
+        foreach (var (player, score) in game.TopScores!)
+        {
+            sb.AppendLine($"Player:{player}, Words complete:{score}");
+        }
         return sb.ToString();
     }
 }
