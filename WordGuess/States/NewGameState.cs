@@ -17,12 +17,16 @@ public class NewGameState : IState
         this.stateFactory = stateFactory;
     }
 
-    public IView View => null;
-    public Interaction Interaction => Interaction.None;
+    public IView View => new NewGameView();
+    public Interaction Interaction => Interaction.PressAnyKey;
 
     public IState Act(char? pressedKey)
     {
-        game.Word = wordGenerator.Generate();
+        if (string.IsNullOrEmpty(game.Word))
+        {
+            game.Word = wordGenerator.Generate();
+            return this;
+        }
         return stateFactory.CreateGuessingWordState();
     }
 }
