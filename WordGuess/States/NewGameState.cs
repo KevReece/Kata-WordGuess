@@ -1,25 +1,24 @@
 using WordGuess.Model;
 using WordGuess.Models;
-using WordGuess.States;
 using WordGuess.Views;
 
-namespace WordGuess;
+namespace WordGuess.States;
 
 public class NewGameState : IState
 {
     private readonly Game game;
     private readonly WordGenerator wordGenerator;
-    private readonly StateFactory stateFactory;
+    private readonly IStateFactory stateFactory;
 
-    public NewGameState(Game game, WordGenerator wordGenerator, StateFactory stateFactory)
+    public NewGameState(Game game, WordGenerator wordGenerator, IStateFactory stateFactory)
     {
         this.game = game;
         this.wordGenerator = wordGenerator;
         this.stateFactory = stateFactory;
     }
 
-    public IView View => new NewGameView();
-    public Interaction Interaction => Interaction.GetKey;
+    public IView View => null;
+    public Interaction Interaction => Interaction.None;
 
     public IState Act(char? pressedKey)
     {

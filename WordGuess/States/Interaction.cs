@@ -1,4 +1,4 @@
-namespace WordGuess;
+namespace WordGuess.States;
 
 public enum Interaction
 {

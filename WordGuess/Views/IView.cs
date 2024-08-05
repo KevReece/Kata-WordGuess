@@ -1,8 +1,11 @@
 using WordGuess;
 
-public interface IView
+namespace WordGuess.Views
 {
-    bool ClearRender { get; }
+    public interface IView
+    {
+        bool ClearRender { get; }
 
-    string Render();
+        string Render();
+    }
 }

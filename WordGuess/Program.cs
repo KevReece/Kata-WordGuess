@@ -4,5 +4,5 @@ using Autofac;
 
 var container = DependencyContainer.Build();
 
-var gameLoop = container.Resolve<GameLoop>();
-gameLoop.Run();
+var stateFlowLoop = container.Resolve<StateFlowLoop>();
+stateFlowLoop.Run();

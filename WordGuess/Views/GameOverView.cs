@@ -1,5 +1,6 @@
 using System.Text;
 using WordGuess.Models;
+using WordGuess.Views;
 
 namespace WordGuess;
 

@@ -1,8 +1,7 @@
 using WordGuess.Models;
-using WordGuess.States;
 using WordGuess.Views;
 
-namespace WordGuess;
+namespace WordGuess.States;
 
 public class EnteringInitialsState : IState
 {
@@ -13,8 +12,8 @@ public class EnteringInitialsState : IState
         this.game = game;
     }
 
-    public IView View => game.PlayerInitials.Length == 0 
-        ? new StartEnteringInitialsView(game) 
+    public IView View => game.PlayerInitials.Length == 0
+        ? new StartEnteringInitialsView(game)
         : new EnteringInitialsView();
     public Interaction Interaction => Interaction.GetKey;
 

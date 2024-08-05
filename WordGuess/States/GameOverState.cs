@@ -1,7 +1,7 @@
 using WordGuess.Models;
-using WordGuess.States;
+using WordGuess.Views;
 
-namespace WordGuess;
+namespace WordGuess.States;
 
 public class GameOverState : IState
 {

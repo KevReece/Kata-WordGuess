@@ -1,7 +1,7 @@
 using System.Text;
 using WordGuess.Models;
 
-namespace WordGuess;
+namespace WordGuess.Views;
 
 public class GuessingWordView : IView
 {

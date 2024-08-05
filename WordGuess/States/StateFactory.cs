@@ -1,10 +1,9 @@
 using WordGuess.Model;
 using WordGuess.Models;
-using WordGuess.States;
 
-namespace WordGuess;
+namespace WordGuess.States;
 
-public class StateFactory
+public class StateFactory : IStateFactory
 {
     private readonly WordGenerator wordGenerator;
     private readonly Game game;

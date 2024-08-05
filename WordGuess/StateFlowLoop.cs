@@ -1,30 +1,31 @@
+using WordGuess.States;
+
 namespace WordGuess;
 
-public class GameLoop
+public class StateFlowLoop
 {
-    private readonly StateFlow stateFlow;
-    private readonly ConsoleWrapper console;
+    private readonly IStateFactory stateFactory;
+    private readonly IConsoleWrapper console;
 
-    public GameLoop(StateFlow stateFlow, ConsoleWrapper console)
+    public StateFlowLoop(IStateFactory stateFactory, IConsoleWrapper console)
     {
-        this.stateFlow = stateFlow;
+        this.stateFactory = stateFactory;
         this.console = console;
     }
 
     public void Run()
     {
+        var state = stateFactory.CreateNewGameState();
+        var pressedKey = null as char?;
         while (true)
         {
-            var state = stateFlow.Step();
+            state = state.Act(pressedKey);
             if (state.View.ClearRender)
             {
                 console.Clear();
             }
             console.Write(state.View.Render());
-            if (state.Interaction == Interaction.GetKey)
-            {
-                stateFlow.PressedKey = console.ReadKey();
-            }
+            pressedKey = state.Interaction == Interaction.GetKey? console.ReadKey() : null;
             if (state.Interaction == Interaction.PressAnyKey)
             {
                 console.ReadKey();

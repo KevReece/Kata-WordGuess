@@ -1,7 +1,7 @@
 
 namespace WordGuess;
 
-public class ConsoleWrapper
+public class ConsoleWrapper : IConsoleWrapper
 {
     public void Clear()
     {

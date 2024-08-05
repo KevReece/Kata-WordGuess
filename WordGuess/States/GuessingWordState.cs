@@ -1,16 +1,16 @@
 using WordGuess.Model;
 using WordGuess.Models;
-using WordGuess.States;
+using WordGuess.Views;
 
-namespace WordGuess;
+namespace WordGuess.States;
 
 public class GuessingWordState : IState
 {
     private readonly Game game;
     private readonly WordGenerator wordGenerator;
-    private readonly StateFactory stateFactory;
+    private readonly IStateFactory stateFactory;
 
-    public GuessingWordState(Game game, WordGenerator wordGenerator, StateFactory stateFactory)
+    public GuessingWordState(Game game, WordGenerator wordGenerator, IStateFactory stateFactory)
     {
         this.game = game;
         this.wordGenerator = wordGenerator;
