@@ -1,0 +1,21 @@
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+  scoresapi:
+    build:
+      context: ScoresApi
+      dockerfile: Dockerfile
+    ports:
+      - "5195:5195"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_CONNECTION_STRING=redis:6379
+
+volumes:
+  redis-data:
