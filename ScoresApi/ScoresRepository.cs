@@ -9,7 +9,7 @@ public class ScoresRepository
     
     public ScoresRepository()
     {
-        var redisConnectionString = Environment.GetEnvironmentVariable("REDIS_CONNECTION_STRING") ?? "redis:6379";
+        var redisConnectionString = Environment.GetEnvironmentVariable("REDIS_CONNECTION_STRING") ?? "scoresdb:6379";
         var redis = ConnectionMultiplexer.Connect(redisConnectionString);
         _database = redis.GetDatabase();
     }

@@ -1,11 +1,4 @@
 services:
-  redis:
-    image: redis:latest
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis-data:/data
-
   scoresapi:
     build:
       context: ScoresApi
@@ -13,9 +6,16 @@ services:
     ports:
       - "5195:5195"
     depends_on:
-      - redis
+      - scoresdb
     environment:
-      - REDIS_CONNECTION_STRING=redis:6379
+      - REDIS_CONNECTION_STRING=scoresdb:6379
+
+  scoresdb:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
 
 volumes:
   redis-data:
