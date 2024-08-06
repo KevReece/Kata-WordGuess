@@ -8,7 +8,8 @@ Kata - Word Guess
 - Gain 10 points per new word.
 - Game is over when points go below 0.
 - Score is number of words completed.
-- Store high scores against 3 letter name initials.
+- Store score against 3 letter name initials.
+- Display top 10 scores.
 - Generic high scores storage (Backend API and DB).
 
 Secondary Objective
