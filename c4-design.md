@@ -1,13 +1,3 @@
-Concept
-===
-- Start with first letter of random word
-- Guess next letter
-- Get penalties for ordinal distance to letter
-- Start with 100 points.
-- Gain 10 points per new word
-- Store high scores against 3 letter name
-- Generic high scores (backend and db)
-
 Context
 ===
 User state flow 
@@ -20,25 +10,26 @@ User state flow
 
 Containers
 ===
-- WordGuess - Console .net 
-- ScoresApi - Rest webapi .net
-- ScoresDb - redis
+- WordGuess - Console .Net 
+- ScoresApi - Rest WebApi .Net
+- ScoresDb - Redis
 
 Components
 ===
 
 WordGuess
 - StateFlowLoop - Progresses states, renders views, applies interactions
-- Game - Holds the game values
+- GameModel - Models all the game values
 - States:{NewGame/GuessingWord/EnteringInitials/GameOver}
-- View:{NewGame/GuessingWord/StartEnteringInitials/EnteringInitials/GameOver}
-- WordGenerator
+- Views:{NewGame/GuessingWord/StartEnteringInitials/EnteringInitials/GameOver}
+- WordGenerator - for each new word
 
 ScoresApi
-- ScoresRepository
+- ScoresApiClient - separate library as API SDK
+- ScoresRepository - connects to ScoresDB
 
 ScoresDB
-- scores
+- `scores` list
 
 Code
 ===
@@ -54,8 +45,8 @@ WordGuess
     - array(string player, int score) TopScores
 
 ScoresApi
-    - POST score (string player, int score)
-    - GET topscores (array(string player, int score))
+    - POST `/score` (string player, int score)
+    - GET `/topscores` (array(string player, int score))
 
 ScoresDB
 - scores

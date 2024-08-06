@@ -5,14 +5,14 @@ namespace WordGuess.States;
 
 public class GameOverState : IState
 {
-    private Game game;
+    private GameModel gameModel;
 
-    public GameOverState(Game game)
+    public GameOverState(GameModel gameModel)
     {
-        this.game = game;
+        this.gameModel = gameModel;
     }
 
-    public IView View => new GameOverView(game);
+    public IView View => new GameOverView(gameModel);
     public IState Act(char? pressedKey) => null!;
     public Interaction Interaction => Interaction.Exit;
 }

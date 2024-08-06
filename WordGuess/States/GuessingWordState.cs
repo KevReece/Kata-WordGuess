@@ -6,43 +6,43 @@ namespace WordGuess.States;
 
 public class GuessingWordState : IState
 {
-    private readonly Game game;
+    private readonly GameModel gameModel;
     private readonly WordGenerator wordGenerator;
     private readonly IStateFactory stateFactory;
 
-    public GuessingWordState(Game game, WordGenerator wordGenerator, IStateFactory stateFactory)
+    public GuessingWordState(GameModel gameModel, WordGenerator wordGenerator, IStateFactory stateFactory)
     {
-        this.game = game;
+        this.gameModel = gameModel;
         this.wordGenerator = wordGenerator;
         this.stateFactory = stateFactory;
     }
 
-    public IView View => new GuessingWordView(game);
+    public IView View => new GuessingWordView(gameModel);
     public Interaction Interaction => Interaction.GetKey;
 
     public IState Act(char? pressedKey)
     {
-        if (game.Word is null)
+        if (gameModel.Word is null)
         {
             throw new InvalidOperationException("Word is not set.");
         }
         if (pressedKey.HasValue && char.IsLetter(pressedKey.Value))
         {
             var pressedChar = char.ToUpperInvariant(pressedKey.Value);
-            var ordinalDifference = Math.Abs(game.Word[game.CurrentCharIndex] - pressedChar);
-            game.Points -= ordinalDifference;
-            game.CurrentCharIndex++;
+            var ordinalDifference = Math.Abs(gameModel.Word[gameModel.CurrentCharIndex] - pressedChar);
+            gameModel.Points -= ordinalDifference;
+            gameModel.CurrentCharIndex++;
         }
-        if (game.Points <= 0)
+        if (gameModel.Points <= 0)
         {
             return stateFactory.CreateEnteringInitialsState();
         }
-        if (game.CurrentCharIndex == game.Word.Length)
+        if (gameModel.CurrentCharIndex == gameModel.Word.Length)
         {
-            game.WordsComplete++;
-            game.Word = wordGenerator.Generate();
-            game.CurrentCharIndex = 1;
-            game.Points += 10;
+            gameModel.WordsComplete++;
+            gameModel.Word = wordGenerator.Generate();
+            gameModel.CurrentCharIndex = 1;
+            gameModel.Points += 10;
             return stateFactory.CreateGuessingWordState();
         }
         return this;

@@ -5,11 +5,11 @@ namespace WordGuess.Views;
 
 public class GameOverView : IView
 {
-    private readonly Game game;
+    private readonly GameModel gameModel;
 
-    public GameOverView(Game game)
+    public GameOverView(GameModel gameModel)
     {
-        this.game = game;
+        this.gameModel = gameModel;
     }
 
     public bool ClearRender => true;
@@ -19,11 +19,11 @@ public class GameOverView : IView
         var sb = new StringBuilder();
         sb.AppendLine("GAME OVER");
         sb.AppendLine("=========\n");
-        sb.AppendLine($"Words complete: {game.WordsComplete}");
-        sb.AppendLine($"Player: {game.PlayerInitials}\n");
+        sb.AppendLine($"Words complete: {gameModel.WordsComplete}");
+        sb.AppendLine($"Player: {gameModel.PlayerInitials}\n");
         sb.AppendLine("Top Scores:");
         sb.AppendLine("-----------\n");
-        foreach (var (player, score) in game.TopScores!)
+        foreach (var (player, score) in gameModel.TopScores!)
         {
             sb.AppendLine($"Player:{player}, Words complete:{score}");
         }

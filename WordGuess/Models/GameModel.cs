@@ -1,6 +1,6 @@
 namespace WordGuess.Models;
 
-public class Game
+public class GameModel
 {
     public string? Word { get; set; }
     public int Points { get; set; } = 100;

@@ -5,11 +5,11 @@ namespace WordGuess.Views;
 
 public class StartEnteringInitialsView : IView
 {
-    private readonly Game game;
+    private readonly GameModel gameModel;
 
-    public StartEnteringInitialsView(Game game)
+    public StartEnteringInitialsView(GameModel gameModel)
     {
-        this.game = game;
+        this.gameModel = gameModel;
     }
 
     public bool ClearRender { get; private set; } = true;
@@ -19,9 +19,9 @@ public class StartEnteringInitialsView : IView
         var sb = new StringBuilder();
         sb.AppendLine("GAME OVER");
         sb.AppendLine("=========\n");
-        sb.AppendLine($"Words complete: {game.WordsComplete}");
-        sb.AppendLine($"Word: {game.GetMaskedWord()}");
-        sb.AppendLine($"Points: {game.Points}");
+        sb.AppendLine($"Words complete: {gameModel.WordsComplete}");
+        sb.AppendLine($"Word: {gameModel.GetMaskedWord()}");
+        sb.AppendLine($"Points: {gameModel.Points}");
         sb.AppendLine("Enter your initials:");
         return sb.ToString();
     }

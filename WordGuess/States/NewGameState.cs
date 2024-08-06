@@ -6,13 +6,13 @@ namespace WordGuess.States;
 
 public class NewGameState : IState
 {
-    private readonly Game game;
+    private readonly GameModel gameModel;
     private readonly WordGenerator wordGenerator;
     private readonly IStateFactory stateFactory;
 
-    public NewGameState(Game game, WordGenerator wordGenerator, IStateFactory stateFactory)
+    public NewGameState(GameModel gameModel, WordGenerator wordGenerator, IStateFactory stateFactory)
     {
-        this.game = game;
+        this.gameModel = gameModel;
         this.wordGenerator = wordGenerator;
         this.stateFactory = stateFactory;
     }
@@ -22,9 +22,9 @@ public class NewGameState : IState
 
     public IState Act(char? pressedKey)
     {
-        if (string.IsNullOrEmpty(game.Word))
+        if (string.IsNullOrEmpty(gameModel.Word))
         {
-            game.Word = wordGenerator.Generate();
+            gameModel.Word = wordGenerator.Generate();
             return this;
         }
         return stateFactory.CreateGuessingWordState();

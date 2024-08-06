@@ -7,33 +7,33 @@ namespace WordGuess.States;
 public class StateFactory : IStateFactory
 {
     private readonly WordGenerator wordGenerator;
-    private readonly Game game;
+    private readonly GameModel gameModel;
     private readonly IScoresApiClient scoresApiClient;
 
-    public StateFactory(WordGenerator wordGenerator, Game game, IScoresApiClient scoresApiClient)
+    public StateFactory(WordGenerator wordGenerator, GameModel gameModel, IScoresApiClient scoresApiClient)
     {
         this.wordGenerator = wordGenerator;
-        this.game = game;
+        this.gameModel = gameModel;
         this.scoresApiClient = scoresApiClient;
     }
 
     public IState CreateNewGameState()
     {
-        return new NewGameState(game, wordGenerator, this);
+        return new NewGameState(gameModel, wordGenerator, this);
     }
 
     public IState CreateGuessingWordState()
     {
-        return new GuessingWordState(game, wordGenerator, this);
+        return new GuessingWordState(gameModel, wordGenerator, this);
     }
 
     public IState CreateGameOverState()
     {
-        return new GameOverState(game);
+        return new GameOverState(gameModel);
     }
 
     public IState CreateEnteringInitialsState()
     {
-        return new EnteringInitialsState(game, scoresApiClient);
+        return new EnteringInitialsState(gameModel, scoresApiClient);
     }
 }

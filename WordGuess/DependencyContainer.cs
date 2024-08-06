@@ -15,7 +15,7 @@ public class DependencyContainer
         containerBuilder.RegisterType<StateFlowLoop>().AsSelf();
         containerBuilder.RegisterType<StateFactory>().As<IStateFactory>();
         containerBuilder.RegisterType<WordGenerator>().AsSelf();
-        containerBuilder.RegisterType<Game>().AsSelf();
+        containerBuilder.RegisterType<GameModel>().AsSelf();
         containerBuilder.RegisterType<ScoresApiClient>().As<IScoresApiClient>();
         return containerBuilder.Build();
     }

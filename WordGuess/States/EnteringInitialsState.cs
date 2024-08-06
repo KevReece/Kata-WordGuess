@@ -7,17 +7,17 @@ namespace WordGuess.States;
 
 public class EnteringInitialsState : IState
 {
-    private Game game;
+    private GameModel gameModel;
     private IScoresApiClient scoresApiClient;
 
-    public EnteringInitialsState(Game game, IScoresApiClient scoresApiClient)
+    public EnteringInitialsState(GameModel gameModel, IScoresApiClient scoresApiClient)
     {
-        this.game = game;
+        this.gameModel = gameModel;
         this.scoresApiClient = scoresApiClient;
     }
 
-    public IView View => game.PlayerInitials.Length == 0
-        ? new StartEnteringInitialsView(game)
+    public IView View => gameModel.PlayerInitials.Length == 0
+        ? new StartEnteringInitialsView(gameModel)
         : new EnteringInitialsView();
     public Interaction Interaction => Interaction.GetKey;
 
@@ -25,14 +25,14 @@ public class EnteringInitialsState : IState
     {
         if (pressedKey.HasValue && char.IsLetter(pressedKey.Value))
         {
-            game.PlayerInitials += char.ToUpperInvariant(pressedKey.Value);
+            gameModel.PlayerInitials += char.ToUpperInvariant(pressedKey.Value);
         }
-        if (game.PlayerInitials.Length < 3)
+        if (gameModel.PlayerInitials.Length < 3)
         {
             return this;
         }
-        game.TopScores = GetUpdatedTopScores(game.PlayerInitials, game.WordsComplete)!.Result;
-        return new GameOverState(game);
+        gameModel.TopScores = GetUpdatedTopScores(gameModel.PlayerInitials, gameModel.WordsComplete)!.Result;
+        return new GameOverState(gameModel);
     }
 
     private async Task<IEnumerable<Tuple<string, int>>>? GetUpdatedTopScores(string playerInitials, int wordsComplete)

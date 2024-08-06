@@ -5,11 +5,11 @@ namespace WordGuess.Views;
 
 public class GuessingWordView : IView
 {
-    private readonly Game game;
+    private readonly GameModel gameModel;
 
-    public GuessingWordView(Game game)
+    public GuessingWordView(GameModel gameModel)
     {
-        this.game = game;
+        this.gameModel = gameModel;
     }
 
     public bool ClearRender => true;
@@ -19,9 +19,9 @@ public class GuessingWordView : IView
         var sb = new StringBuilder();
         sb.AppendLine("WORD GUESS");
         sb.AppendLine("==========\n");
-        sb.AppendLine($"Words complete: {game.WordsComplete}");
-        sb.AppendLine($"Word: {game.GetMaskedWord()}");
-        sb.AppendLine($"Points: {game.Points}");
+        sb.AppendLine($"Words complete: {gameModel.WordsComplete}");
+        sb.AppendLine($"Word: {gameModel.GetMaskedWord()}");
+        sb.AppendLine($"Points: {gameModel.Points}");
         return sb.ToString();
     }
 }
